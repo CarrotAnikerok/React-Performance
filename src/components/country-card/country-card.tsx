@@ -8,6 +8,7 @@ import {
 import { formatNumber } from '../../utils/format-utils';
 
 import styles from './country-card.module.css';
+import { memo } from 'react';
 
 type CountryCardProps = {
   country: Country;
@@ -15,7 +16,7 @@ type CountryCardProps = {
   selectedColumns: string[];
 };
 
-export const CountryCard = ({ country, selectedYear, selectedColumns }: CountryCardProps) => {
+export const CountryCard = memo(function CountryCard({ country, selectedYear, selectedColumns }: CountryCardProps) {
   const yearDataMap = createYearDataMap(country.data);
   const population = getPopulationForYear(yearDataMap, selectedYear);
   const co2 = getCo2ForYear(yearDataMap, selectedYear);
@@ -39,4 +40,35 @@ export const CountryCard = ({ country, selectedYear, selectedColumns }: CountryC
       <DataTable data={country.data} year={selectedYear} columns={selectedColumns} />
     </div>
   );
-};
+}, arePropsEqual);
+
+function arePropsEqual(oldProps: CountryCardProps, newProps: CountryCardProps): boolean {
+  if (oldProps.selectedYear !== newProps.selectedYear) {
+    return false;
+  }
+
+  if (oldProps.country.id !== newProps.country.id) {
+    return false;
+  }
+
+  if (!areArraysEqual(oldProps.selectedColumns, newProps.selectedColumns)) {
+    return false;
+  }
+  
+  return true;
+}
+
+const areArraysEqual = (arrA: string[], arrB: string[]) => {
+    const isLengthEqual = arrA.length === arrB.length
+
+    if (!isLengthEqual) {return false;}
+
+    const isEqual = true;
+
+    for (let i = 0; i < arrA.length; i++) {
+       if (arrA[i] !== arrB[i]) {
+          return false;
+       }
+    }
+    return isEqual;
+}
