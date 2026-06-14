@@ -1,6 +1,7 @@
 import type { Country } from '../../types';
 import { CountryCard } from '../country-card/country-card';
 import { getPopulationForYear, createYearDataMap } from '../../utils/data-transformers';
+import { List } from 'react-window';
 
 import styles from './country-list.module.css';
 import { useMemo } from 'react';
@@ -43,14 +44,20 @@ export const CountryList = ({
 
   return (
     <div className={styles.countryList}>
-      {filteredCountries.map((country) => (
+      <List
+        rowComponent={CountryCard}
+        rowCount={filteredCountries.length}
+        rowHeight={120 + selectedColumns.length * 37.5}
+        rowProps= {{countries: filteredCountries, selectedYear, selectedColumns}}/>
+      
+      {/* {filteredCountries.map((country) => (
         <CountryCard
           key={country.id}
           country={country}
           selectedYear={selectedYear}
           selectedColumns={selectedColumns}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

@@ -8,24 +8,25 @@ import {
 import { formatNumber } from '../../utils/format-utils';
 
 import styles from './country-card.module.css';
-import { memo } from 'react';
+import { type RowComponentProps } from 'react-window';
+import { useMemo } from 'react';
 
 type CountryCardProps = {
-  country: Country;
+  countries: Country[];
   selectedYear: number;
   selectedColumns: string[];
 };
 
-export const CountryCard = memo(function CountryCard({ country, selectedYear, selectedColumns }: CountryCardProps) {
-  const yearDataMap = createYearDataMap(country.data);
+export function CountryCard({ index, style, countries, selectedYear, selectedColumns }: RowComponentProps<CountryCardProps>) {
+  const yearDataMap = useMemo(() => createYearDataMap(countries[index].data), [countries, index]);
   const population = getPopulationForYear(yearDataMap, selectedYear);
   const co2 = getCo2ForYear(yearDataMap, selectedYear);
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} style={style}>
       <div className={styles.header}>
-        <h3 className={styles.title}>{country.id}</h3>
-        {country.iso_code && <span className={styles.isoCode}>{country.iso_code}</span>}
+        <h3 className={styles.title}>{countries[index].id}</h3>
+        {countries[index].iso_code && <span className={styles.isoCode}>{countries[index].iso_code}</span>}
       </div>
 
       <div className={styles.stats}>
@@ -37,38 +38,7 @@ export const CountryCard = memo(function CountryCard({ country, selectedYear, se
         </div>
       </div>
 
-      <DataTable data={country.data} year={selectedYear} columns={selectedColumns} />
+      <DataTable data={countries[index].data} year={selectedYear} columns={selectedColumns} />
     </div>
   );
-}, arePropsEqual);
-
-function arePropsEqual(oldProps: CountryCardProps, newProps: CountryCardProps): boolean {
-  if (oldProps.selectedYear !== newProps.selectedYear) {
-    return false;
-  }
-
-  if (oldProps.country.id !== newProps.country.id) {
-    return false;
-  }
-
-  if (!areArraysEqual(oldProps.selectedColumns, newProps.selectedColumns)) {
-    return false;
-  }
-  
-  return true;
-}
-
-const areArraysEqual = (arrA: string[], arrB: string[]) => {
-    const isLengthEqual = arrA.length === arrB.length
-
-    if (!isLengthEqual) {return false;}
-
-    const isEqual = true;
-
-    for (let i = 0; i < arrA.length; i++) {
-       if (arrA[i] !== arrB[i]) {
-          return false;
-       }
-    }
-    return isEqual;
-}
+};
