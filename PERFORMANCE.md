@@ -6,32 +6,32 @@ ATTENTION: in current profiler there is no such metric as Commit duration, so it
 
 ### Interaction A: Sort countries
 
-- **Committed add**: 2\.\3 s
-- **Render duration**: \2\7\2 s
-- **Layout effects duration**: \0\.\1 ms
-- **Passive effects duration**: \0\.\1 ms
-- **Screenshot**: ![screenshot_sort_countries](performance-starter\screenshots\baseline\interaction_a_sort_countries.png)
+- **Committed add**: 2.3 s
+- **Render duration**: 272 ms
+- **Layout effects duration**: 0.1 ms
+- **Passive effects duration**: 0.1 ms
+- **Screenshot**: ![screenshot_sort_countries](performance-starter/screenshots/baseline/interaction_a_sort_countries.png)
 
 ### Interaction B: Search countries
 
-- **Committed add**: 2\.\4 s
-- **Render duration**: \_\6\7 s
-- **Layout effects duration**: \0\.\1 ms
-- **Passive effects duration**: \0\.\1 ms
-- **Screenshot**: ![screenshot_search_countries](performance-starter\screenshots\baseline\interaction_b_search_countries.png)
+- **Committed add**: 2.4 s
+- **Render duration**: 67 ms
+- **Layout effects duration**: 0.1 ms
+- **Passive effects duration**: 0.1 ms
+- **Screenshot**: ![screenshot_search_countries](performance-starter/screenshots/baseline/interaction_b_search_countries.png)
 
 ### Interaction C: Change year
 
-- **Committed add**: 3\.\9 s
-- **Render duration**: \2\3\9 s
-- **Layout effects duration**: \0\.\1 ms
-- **Passive effects duration**: \0\.\1 ms
-- **Screenshot**: ![screenshot_change_year](performance-starter\screenshots\baseline\interaction_c_change_year.png)
+- **Committed add**: 3.9 s
+- **Render duration**: 239 ms
+- **Layout effects duration**: 0.1 ms
+- **Passive effects duration**: 0.1 ms
+- **Screenshot**: ![screenshot_change_year](performance-starter/screenshots/baseline/interaction_c_change_year.png)
 
 ### Interaction D: Toggle column
 
-- **Committed add**: 1\.\2 s
-- **Render duration**: \2\1\9 s
-- **Layout effects duration**: \0\.\1 ms
-- **Passive effects duration**: \0\.\1 ms
-- **Screenshot**: ![screenshot_toggle_column](performance-starter\screenshots\baseline\interaction_d_toggle_column.png)
+- **Committed add**: 1.2 s
+- **Render duration**: 219 ms
+- **Layout effects duration**: 0.1 ms
+- **Passive effects duration**: 0.1 ms
+- **Screenshot**: ![screenshot_toggle_column](performance-starter/screenshots/baseline/interaction_d_toggle_column.png)
